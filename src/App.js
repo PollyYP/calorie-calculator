@@ -1,44 +1,86 @@
+import { Form, Input, Radio, Button } from "antd";
 import "./App.css";
 
 function App() {
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
   return (
-    <div>
-      <h2>
-        How many calories in a healthy rate should I eat per day to lose weight
-        within 12 weeks?
-      </h2>
-      <form>
-        <label htmlFor="gender">Gender</label>
-        <input name="gender" type="radio" id="inputMale" value="male" />
-        <label for="male">Male</label>
-        <input name="gender" type="radio" id="inputFemale" value="female" />
-        <label for="female">Female</label>
-        <label htmlFor="age">Age</label>
-        <input name="age" type="text" id="inputAge" placeholder="Age" />
-        <label htmlFor="height">Height</label>
-        <input name="feet" type="number" id="inputFeet" placeholder="feet" />
-        <input
-          name="inches"
-          type="number"
-          id="inputInches"
-          placeholder="inches"
-        />
-        <label htmlFor="weight">Weight</label>
-        <input
+    <Form
+      name="complex-form"
+      onFinish={onFinish}
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+    >
+      <Form.Item label="Gender">
+        <Form.Item
+          name="gender"
+          noStyle
+          rules={[{ required: true, message: "Gender is required" }]}
+        >
+          <Radio.Group>
+            <Radio value="male">Male</Radio>
+            <Radio value="female">Female</Radio>
+          </Radio.Group>
+        </Form.Item>
+      </Form.Item>
+
+      <Form.Item label="Age">
+        <Form.Item
+          name="age"
+          noStyle
+          rules={[{ required: true, message: "Age is required" }]}
+        >
+          <Input style={{ width: 160 }} placeholder="Age" />
+        </Form.Item>
+      </Form.Item>
+
+      <Form.Item label="Height">
+        <Input.Group compact>
+          <Form.Item
+            name={["height", "feet"]}
+            noStyle
+            rules={[{ required: true, message: "Height is required" }]}
+          >
+            <Input style={{ width: "50%" }} placeholder="feet" />
+          </Form.Item>
+          <Form.Item
+            name={["height", "inches"]}
+            noStyle
+            rules={[{ required: true, message: "Height is required" }]}
+          >
+            <Input style={{ width: "50%" }} placeholder="inches" />
+          </Form.Item>
+        </Input.Group>
+      </Form.Item>
+
+      <Form.Item label="Weight">
+        <Form.Item
           name="weight"
-          type="number"
-          id="inputWeight"
-          placeholder="pounds"
-        />
-        <label htmlFor="goalWeight">Goal Weight</label>
-        <input
+          noStyle
+          rules={[{ required: true, message: "Weight is required" }]}
+        >
+          <Input style={{ width: 160 }} placeholder="Weight" />
+        </Form.Item>
+      </Form.Item>
+
+      <Form.Item label="Goal Weight">
+        <Form.Item
           name="goalWeight"
-          type="number"
-          id="inputGoalWeight"
-          placeholder="pounds"
-        />
-      </form>
-    </div>
+          noStyle
+          rules={[{ required: true, message: "Goal Weight is required" }]}
+        >
+          <Input style={{ width: 160 }} placeholder="Goal Weight" />
+        </Form.Item>
+      </Form.Item>
+
+      <Form.Item label=" " colon={false}>
+        <Button type="primary" htmlType="submit">
+          Calculate
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }
 
