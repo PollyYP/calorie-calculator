@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./App.css";
 
 import InfoForm from "./components/form/InfoForm";
 import ResultCard from "./components/resultCard/ResultCard";
+
+import "./App.css";
 
 function App() {
   const [userList, setUserList] = useState([]);
@@ -10,7 +11,11 @@ function App() {
   return (
     <>
       <InfoForm userList={userList} setUserList={setUserList} />
-      <ResultCard userList={userList} />
+      {userList.map((user) => (
+        <div className="card-container">
+          <ResultCard user={user} key={user.id} />
+        </div>
+      ))}
     </>
   );
 }

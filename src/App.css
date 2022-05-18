@@ -1,0 +1,13 @@
+body {
+    background-image: url("https://images.pexels.com/photos/4033159/pexels-photo-4033159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-position: center; 
+    background-repeat: repeat;
+    background-size: cover; 
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.card-container {
+    margin-top: 15px;
+}
