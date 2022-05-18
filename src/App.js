@@ -1,15 +1,51 @@
+import { useState } from "react";
+import axios from "axios";
 import { Form, Input, Radio, Button } from "antd";
 import "./App.css";
 
 function App() {
-  const onFinish = (values) => {
-    console.log(values);
-  };
+  const [result, setResult] = useState();
+
+  async function onFinish(values) {
+    const token = process.env.REACT_APP_OPENAI_API_KEY;
+    const generate = `How many calories per day should I take to lose weight in 12 weeks based on this information?
+
+     Gender: ${values.gender}
+     Age: ${values.age}
+     Height: ${values.height.feet} feet ${values.height.inches} inches
+     Weight: ${values.weight} pounds
+     Goal Weight: ${values.goalWeight} pounds`;
+
+    const url =
+      "https://api.openai.com/v1/engines/text-davinci-002/completions";
+    const para = {
+      prompt: generate,
+      temperature: 0.8,
+      max_tokens: 1020,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    };
+
+    axios
+      .post(url, para, {
+        auth: {
+          password: token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setResult(response.data.choices[0].text);
+      })
+      .catch((error) => {
+        console.log("error " + error);
+      });
+  }
 
   return (
     <div className="form">
-      <div class="title">Want to lose weight in 12 weeks?</div>
-      <div class="subtitle">
+      <div className="title">Want to lose weight in 12 weeks?</div>
+      <div className="subtitle">
         Let's calculate how many calories you should take
       </div>
       <Form
@@ -90,6 +126,7 @@ function App() {
           </Button>
         </Form.Item>
       </Form>
+      {result && <div className="result">{result}</div>}
     </div>
   );
 }
