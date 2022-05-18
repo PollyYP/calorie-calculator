@@ -34,18 +34,19 @@ function InfoForm({ userList, setUserList }) {
       .then((response) => {
         console.log(response.data);
         setUserList([
-          ...userList,
           {
             id: response.data.id,
             nickname: values.nickname,
             info: generate,
             result: response.data.choices[0].text,
           },
+          ...userList,
         ]);
       })
       .catch((error) => {
         console.log("error " + error);
       });
+    console.log(userList);
   }
 
   return (
