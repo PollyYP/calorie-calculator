@@ -1,0 +1,41 @@
+@import '~antd/dist/antd.css';
+
+body {
+  background-image: url("https://images.pexels.com/photos/4016593/pexels-photo-4016593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form {
+  background-color: #f77e7e;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+h1 {
+ padding-top: 10%;
+  color: rgb(34, 33, 33);
+  font-family: sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.title {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
